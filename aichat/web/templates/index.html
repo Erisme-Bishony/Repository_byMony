@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AIChat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>AIChat</h1>
+    <form method="POST">
+        <textarea name="question" placeholder="请输入你的问题或指令" rows="3"></textarea><br>
+        <input type="hidden" name="feedback" value="{{ feedback_message if feedback_message else '' }}">
+        <input type="submit" value="提交">
+    </form>
+    {% if question %}
+    <div class="response">
+        <h3>你的输入: {{ question }}</h3>
+        <p><strong>结果:</strong> {{ result | safe }}</p>
+    </div>
+    <div class="discussion-log">
+        <h3>讨论过程:</h3>
+        <p>{{ discussion_log | safe }}</p>
+    </div>
+    <div class="feedback">
+        <h3>反馈</h3>
+        <form method="POST" action="/feedback">
+            <label>评分 (1-5): </label>
+            <select name="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <input type="submit" value="提交反馈">
+        </form>
+    </div>
+    {% endif %}
+    {% if feedback_message %}
+    <p>{{ feedback_message }}</p>
+    {% endif %}
+</body>
+</html>

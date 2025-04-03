@@ -1,0 +1,9 @@
+body { font-family: Arial, sans-serif; margin: 20px; }
+textarea, input[type="text"] { width: 100%; box-sizing: border-box; }
+.response { margin-top: 20px; }
+.discussion-log { border: 1px solid #ccc; padding: 10px; margin-top: 20px; }
+.feedback { margin-top: 20px; }
+@media (max-width: 600px) {
+    body { margin: 10px; }
+    textarea { height: 100px; }
+}
